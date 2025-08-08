@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<div class="linker-container" id="pair-linker">
+    <div class="left-panel">
+        <h1>Link with Pairing Code</h1>
+        <p>Enter your phone number including the country code (e.g., +1234567890). A pairing code will be generated for you to enter in WhatsApp.</p>
+
+        <form id="phone-form" class="phone-form">
+            <input type="tel" id="phone-number-input" placeholder="Enter phone number" required>
+            <button type="submit" id="generate-pair-btn" class="action-button">Get Pairing Code</button>
+        </form>
+
+        <div id="pairing-code-area" class="pairing-code-area" style="display: none;">
+            <p>Enter this code on your phone:</p>
+            <div id="pairing-code-display" class="pairing-code-display" title="Click to copy">
+                <!-- Pairing code will be injected here -->
+            </div>
+            <p class="small-text">Go to WhatsApp > Settings > Linked Devices > Link with phone number</p>
+        </div>
+
+    </div>
+    <div class="right-panel">
+        <div class="log-viewer">
+            <div class="log-header">
+                <h2>Session Logs</h2>
+                <span class="log-status" id="log-status-indicator">Awaiting Session...</span>
+            </div>
+            <pre class="log-box" id="log-box"></pre>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

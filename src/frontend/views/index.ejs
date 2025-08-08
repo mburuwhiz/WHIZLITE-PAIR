@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<div class="home-container">
+    <div class="hero-section">
+        <h1>Link Your WhatsApp Account</h1>
+        <p>Choose your preferred method to securely connect your device to the WHIZ LITE platform.</p>
+    </div>
+    <div class="method-selection">
+        <a href="/qr" class="card">
+            <div class="card-icon">📱</div>
+            <h2>Link with QR Code</h2>
+            <p>The standard and quickest way to link your device. Use your phone to scan a QR code.</p>
+            <div class="card-button">
+                Choose QR Code
+            </div>
+        </a>
+        <a href="/pair" class="card">
+            <div class="card-icon">#️⃣</div>
+            <h2>Link with Pairing Code</h2>
+            <p>A great alternative if you can't use your camera. A code will be generated for you to enter on your phone.</p>
+            <div class="card-button">
+                Choose Pairing Code
+            </div>
+        </a>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

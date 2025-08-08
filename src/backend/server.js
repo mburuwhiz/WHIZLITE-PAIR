@@ -1,41 +1,70 @@
 const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
 const path = require('path');
 const dotenv = require('dotenv');
-const sessionRoutes = require('./routes/sessionRoutes');
 const { connectToDatabase } = require('./services/dbService');
+const sessionRoutes = require('./routes/sessionRoutes'); // This will be the new API routes
+const viewRoutes = require('./routes/viewRoutes'); // This will be the new view rendering routes
 
-// Load environment variables from .env file
+// Load environment variables
 dotenv.config();
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
 const PORT = process.env.PORT || 3000;
+
+// View engine setup
+app.set('views', path.join(__dirname, '..', 'frontend', 'views'));
+app.set('view engine', 'ejs');
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'public')));
 
-// Serve frontend static files
-const frontendPath = path.join(__dirname, '..', 'frontend', 'public');
-app.use(express.static(frontendPath));
-
-// API Routes
-app.use('/api/sessions', sessionRoutes);
-
-// A simple root route to serve the index.html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
+// Pass socket.io to each request
+app.use((req, res, next) => {
+    req.io = io;
+    next();
 });
 
-// Connect to the database and then start the server
-console.log('Connecting to the database...');
+// Routes
+app.use('/', viewRoutes);
+app.use('/api/sessions', sessionRoutes);
+
+
+// Socket.io connection logic
+io.on('connection', (socket) => {
+    console.log(`A user connected via WebSocket: ${socket.id}`);
+
+    // When a client wants to receive logs for a session, it must join a room.
+    socket.on('join_room', (sessionId) => {
+        if (sessionId) {
+            socket.join(sessionId);
+            console.log(`Socket ${socket.id} joined room: ${sessionId}`);
+            // You can optionally send a confirmation message back to the client
+            socket.emit('log', 'Successfully joined session room. Awaiting logs...');
+        }
+    });
+
+    socket.on('disconnect', () => {
+        console.log(`User disconnected: ${socket.id}`);
+    });
+});
+
+// Connect to DB and start server
 connectToDatabase()
     .then(() => {
-        console.log('Database connection successful.');
-        app.listen(PORT, () => {
+        server.listen(PORT, () => {
             console.log(`Server is running on http://localhost:${PORT}`);
-            console.log('Open the URL in your browser to link your WhatsApp account.');
         });
     })
     .catch(err => {
         console.error('Failed to connect to the database. Server will not start.', err);
         process.exit(1);
     });
+
+module.exports = { io }; // Export io for other modules if needed
