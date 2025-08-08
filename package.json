@@ -2,10 +2,9 @@
   "name": "whizlite-whatsapp-linker",
   "version": "1.0.0",
   "description": "A multi-user WhatsApp gateway for WHIZ LITE.",
-  "main": "start.js",
+  "main": "src/backend/server.js",
   "scripts": {
-    "start": "node start.js",
-    "dev": "nodemon start.js"
+    "start": "node src/backend/server.js"
   },
   "keywords": [
     "whatsapp",
