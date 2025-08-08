@@ -149,3 +149,31 @@ async function startNewSession(sessionId) {
 module.exports = { startNewSession };
 
 This comprehensive plan provides you with all the details, from the high-level prompt to the specific file layout and core code logic, to successfully build your multi-user ITC WhatsApp gateway.
+
+
+connection success / second mesage template 
+
+await sock.sendMessage(sock.user.id, {
+    text: `╭──❍ *ᴡʜɪᴢ ʟɪᴛᴇ ɪᴛᴄ ʟɪɴᴋᴇʀ*
+│
+├ ✅ *Status:* Your device is now linked successfully!
+├ 🔑 *Security:* Keep your Session ID safe — NEVER share it.
+├ 🌐 *Connected Number:* ${sock.user.id.split(':')[0]}
+│
+├ 💡 *Next Step:* You can now use all ITC WHIZ LITE services.
+├ 📜 *Tip:* Type *.menu* to see the full command list.
+├ 🔗 *Support:* Always here for you — tap the button below.
+│
+╰─> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴡʜɪᴢ-ᴛᴇᴄʜ ©*`,
+    footer: "Your connection is now active 🚀",
+    templateButtons: [
+        {
+            index: 1,
+            urlButton: {
+                displayText: "WHIZ LITE SUPPORT",
+                url: "https://whiztechsupport.example" // replace with your real support site
+            }
+        }
+    ]
+});
+
