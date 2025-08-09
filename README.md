@@ -1,4 +1,3 @@
-````markdown
 <!-- Header -->
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&pause=1000&color=4AF626&center=true&vCenter=true&width=650&lines=WHIZLITE+—+Multi+Device+QR+Linker;Fast%2C+Secure%2C+Cute+WhatsApp+Pairing;Session+ID+Delivered+Directly+to+You" alt="Typing SVG" />
@@ -89,3 +88,4 @@ MIT © WHIZ (Josphat Mburu)
 ```
 
 ---
+
