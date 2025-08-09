@@ -55,16 +55,9 @@ io.on('connection', (socket) => {
     });
 });
 
-// Connect to DB and start server
-connectToDatabase()
-    .then(() => {
-        server.listen(PORT, () => {
-            console.log(`Server is running on http://localhost:${PORT}`);
-        });
-    })
-    .catch(err => {
-        console.error('Failed to connect to the database. Server will not start.', err);
-        process.exit(1);
-    });
+// Start the server
+server.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
 
 module.exports = { io }; // Export io for other modules if needed
