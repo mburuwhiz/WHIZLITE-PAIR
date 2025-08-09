@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHIZ LITE | Link with QR Code</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="container">
+        <h1>Scan the QR Code</h1>
+        <p>Open WhatsApp on your phone, go to Linked Devices and scan the code below.</p>
+        <div class="display-area">
+            <img id="qr-code-img" src="" alt="QR Code" style="display: none;">
+            <div id="status-overlay" class="status-overlay">
+                <p id="status-text" class="status-text">Generating QR Code...</p>
+            </div>
+        </div>
+        <a href="/" class="button-secondary">Refresh Page</a>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Your script remains unchanged
+        const sessionId = '<%= sessionId %>'; 
+        const socket = io();
+        socket.on('connect', () => {
+            document.getElementById('status-text').textContent = 'Waiting for QR Code...';
+            socket.emit('join-room', sessionId);
+        });
+        socket.on('qr', (qrImage) => {
+            document.getElementById('qr-code-img').src = qrImage;
+            document.getElementById('qr-code-img').style.display = 'block';
+            document.getElementById('status-overlay').style.opacity = '0';
+        });
+        socket.on('status', (data) => {
+            document.getElementById('status-overlay').style.opacity = '1';
+            document.getElementById('status-text').textContent = data.message;
+        });
+    </script>
+</body>
+</html>
