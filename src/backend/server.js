@@ -6,7 +6,6 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const path = require('path');
-const { connectToDatabase } = require('./services/dbService');
 const sessionRoutes = require('./routes/sessionRoutes'); // This will be the new API routes
 const viewRoutes = require('./routes/viewRoutes'); // This will be the new view rendering routes
 
