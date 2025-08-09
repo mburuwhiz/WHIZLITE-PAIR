@@ -7,7 +7,8 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/whizlite_s
 
 const sessionSchema = new mongoose.Schema({
   sessionId: { type: String, required: true, unique: true },
-  sessionData: { type: String, required: true },
+  // Use Mixed type to store the complex Baileys auth object
+  sessionData: { type: mongoose.Schema.Types.Mixed, required: true },
 });
 
 const Session = mongoose.model('Session', sessionSchema);
