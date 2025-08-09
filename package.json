@@ -1,0 +1,22 @@
+{
+  "name": "whizlite-qr-linker",
+  "version": "1.0.0",
+  "description": "A dedicated service for linking WhatsApp via QR code.",
+  "main": "server_qr.js",
+  "scripts": {
+    "start": "node server_qr.js"
+  },
+  "author": "github.com/mburuwhiz",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "^6.7.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "pino": "^9.1.0",
+    "pino-pretty": "^11.2.1",
+    "qrcode": "^1.5.3",
+    "socket.io": "^4.7.5",
+    "dotenv": "^16.4.5"
+  }
+}
