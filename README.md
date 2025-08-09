@@ -1,211 +1,168 @@
+---
+
+# ✨ WHIZLITE — Multi-Device QR Linker
+
+<p align="center">
+  <!-- Inline SVG typing animation -->
+  <svg width="760" height="140" viewBox="0 0 760 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <style>
+      .bg { fill: #0f172a; }
+      .title { font: 700 28px/1.1 "Inter", "Segoe UI", Roboto, sans-serif; fill: #fff; }
+      .subtitle { font: 500 14px/1.2 "Inter", sans-serif; fill: #cbd5e1; }
+      .cursor { fill: #60a5fa; animation: blink 1s steps(2, start) infinite; }
+      .typing text { overflow: visible; }
+      @keyframes blink { 50% { opacity: 0; } }
+    </style>
 
+```
+<rect width="760" height="140" rx="12" class="bg"/>
+<g transform="translate(28,34)" class="typing">
+  <text class="title">WHIZLITE — Link WhatsApp sessions, instantly</text>
+  <g transform="translate(0,44)">
+    <text class="subtitle" id="typed">The cutest, fastest way to get your WhatsApp session ID — sent securely to your number.</text>
+    <!-- cursor -->
+    <rect x="620" y="-12" width="8" height="18" class="cursor" rx="2"/>
+  </g>
+</g>
+```
 
-# ✨ WHIZ LITE MULTI DEVICE LINK✨
+  </svg>
+</p>
 
-\<div align="center"\>
-\<img src="[https://img.shields.io/badge/Node.js-339933?style=for-the-badge\&logo=nodedotjs\&logoColor=white](https://www.google.com/search?q=https://img.shields.io/badge/Node.js-339933%3Fstyle%3Dfor-the-badge%26logo%3Dnodedotjs%26logoColor%3Dwhite)" alt="Node.js"\>
-\<img src="[https://img.shields.io/badge/Express.js-000000?style=for-the-badge\&logo=express\&logoColor=white](https://www.google.com/search?q=https://img.shields.io/badge/Express.js-000000%3Fstyle%3Dfor-the-badge%26logo%3Dexpress%26logoColor%3Dwhite)" alt="Express.js"\>
-\<img src="[https://img.shields.io/badge/Socket.io-010101?\&style=for-the-badge\&logo=socket.io\&logoColor=white](https://www.google.com/search?q=https://img.shields.io/badge/Socket.io-010101%3F%26style%3Dfor-the-badge%26logo%3Dsocket.io%26logoColor%3Dwhite)" alt="Socket.io"\>
-\</div\>
+<p align="center">
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+  <img alt="Express" src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" />
+  <img alt="Socket.IO" src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white" />
+  <img alt="Baileys" src="https://img.shields.io/badge/Baileys-0ea5e9?style=for-the-badge" />
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" />
+</p>
 
-\<p align="center"\>
-The cutest and simplest way to get your WhatsApp session ID, fast and secure\! 🚀
-\</p\>
+---
 
------
+A tiny, secure web server that generates a WhatsApp login QR and delivers the resulting `WHIZLITE_<session_id>` to *your* phone — fast, lightweight, and multi-device ready.
 
-## 🚀 About The Project
+---
 
-Welcome to the WHIZLITE QR Linker\! 🎉
+## Key features
 
-Say goodbye to complicated setups\! This little project makes it super easy and fun to link your WhatsApp account and receive your session ID directly to your number. It runs a clean, simple web server that generates a unique QR code. Just scan it, and *voilà*\! Your session ID arrives in your WhatsApp messages.
+* Minimal, beautiful UI focused on one job: linking WhatsApp.
+* Instant QR generation and real-time updates via **Socket.IO**.
+* Session delivered directly to your phone (no external DB required).
+* In-memory session store for privacy (cleared on restart).
+* Built to handle multiple concurrent pairings.
 
-It's built with ❤️ using **Node.js**, **Express**, **Socket.IO**, and the powerful **Baileys** library.
+---
 
-\<br\>
-\<p align="center"\>
-\<img src="[https://i.ibb.co/L5hV3pC/whizlite-qr-screenshot.png](https://www.google.com/search?q=https://i.ibb.co/L5hV3pC/whizlite-qr-screenshot.png)" alt="WHIZLITE QR Linker Screenshot" width="700"\>
-\</p\>
-\<br\>
+## Quick start
 
------
+1. Clone:
 
-## ✨ Features
+```bash
+git clone https://github.com/mburuwhiz/whizlite-pair.git
+cd whizlite-pair
+```
 
-  * **Simple & Clean UI:** A beautiful, no-fuss interface that just works.
-  * **Instant QR Code Generation:** Get a fresh QR code the moment you open the page. ⚡
-  * **Direct Session ID Delivery:** Your session is sent securely to your own WhatsApp number. 📲
-  * **Secure In-Memory Sessions:** No database needed\! Sessions are live in memory and gone when the server restarts. 🔒
-  * **Multi-Device Ready:** Designed from the ground up to handle multiple concurrent connections without any issues. 🌐
+2. Install:
 
------
+```bash
+npm install
+```
 
-## 🛠️ Getting Started
+3. Create `.env` (defaults shown):
 
-Getting your own WHIZLITE QR Linker running is as easy as 1, 2, 3\!
+```
+PORT=3000
+HOST=0.0.0.0
+```
 
-### Prerequisites
+4. Start:
 
-Make sure you have Node.js installed on your system.
+```bash
+npm start
+# or for dev with hot reload (if you add nodemon)
+# npx nodemon ./src/index.js
+```
 
-  * [Node.js](https://nodejs.org/) (which includes npm)
+Open `http://localhost:3000`, scan the QR (WhatsApp → Settings → Linked devices → Link a device) and you’ll get a message with your `WHIZLITE_` session ID.
 
-### Installation
+---
 
-1.  **Clone the repo** (or just download the files into a new folder)
-    ```sh
-    git clone https://github.com/mburuwhiz/whizlite-pair.git
-    ```
-2.  **Navigate to the project directory**
-    ```sh
-    whizlite-pair
-    ```
-3.  **Install NPM packages**
-    ```sh
-    npm install
-    ```
-4.  **Create your environment file**
-      * Create a new file in the root of the project called `.env`
-      * Open it and add the following line. You can change the port if you want\!
-        ```env
-        PORT=3000
-        ```
+## Files & structure (typical)
 
------
+```
+.
+├─ src/
+│  ├─ index.js        # server: express + socket.io + baileys integration
+│  ├─ lib/            # helpers (qr generator, session manager)
+│  └─ public/         # frontend (minimal UI + live QR)
+├─ .env
+├─ package.json
+└─ README.md
+```
 
-## 📜 Usage
+---
 
-Now for the fun part\!
+## Security notes (read first)
 
-1.  **Start the server** from your terminal:
+* Sessions are held **only in memory** to minimize persistent risk. A restart clears them.
+* Treat `WHIZLITE_` session tokens like secrets — rotate or invalidate when needed.
+* If you expose the server to the internet, use HTTPS + authentication (reverse proxy, basic auth, or JWT).
+* For production, add persistent encrypted storage and regeneration/expiry policies.
 
-    ```sh
-    npm start
-    ```
+---
 
-    You should see a message saying: `QR Linker is running on http://localhost:3000`
+## Ideas / Next steps (WhatsApp automation & bots — forward-thinking)
 
-2.  **Open your browser** and navigate to `http://localhost:3000`.
+WHIZ (this is for you 😉): if you want to evolve WHIZLITE into a WhatsApp automation platform, consider:
 
-3.  **Scan the QR code** with your phone using WhatsApp (`Settings` \> `Linked Devices` \> `Link a Device`).
+* Persisting sessions in an encrypted store (e.g., SQLite + AES) for controlled long-running bots.
+* Add an admin UI for session lifecycle: revoke, refresh, export/import.
+* Integrate a webhook/queue (Redis, RabbitMQ) so your automation workers receive messages reliably.
+* Build pre-made automation templates: autoresponders, broadcast scheduler, CRM hooks.
+* Add a secure OAuth / API key layer for third-party apps to programmatically request pairing links.
+* Experiment with low-cost hosting (Fly.io, Railway, Render free tiers) for demos.
 
-4.  **Check your WhatsApp messages\!** You will receive two messages: one with your `WHIZLITE_` session ID and a confirmation message.
+Free / practical tools to explore:
 
-That's it\! You're ready to go\! 🥳
+* Node.js — runtime for server apps (free).
+* Baileys — lightweight WhatsApp Web client library (Node).
+* qrcode or qr-image — generate QR data URLs.
+* Redis (free tier/dev) — ephemeral session store/locking.
+* ngrok or Cloudflare Tunnel — expose local server securely for testing.
 
------
+---
 
-## 💖 Acknowledgments
+## Example env / runtime tips
 
-  * Built with ❤️ by **Josphat Mburu** ([@mburuwhiz](https://www.google.com/search?q=https://github.com/mburuwhiz))
-  * A huge thank you to the **Baileys** team for making this possible.
-  * And thank you for using this project\!
+* Use `PORT` to change the listening port.
+* When exposing publicly, put NGINX / Caddy in front to enable TLS and rate limiting.
+* For CI builds, add a lint/test step and a small `integration` check that the server returns `200 /` and a valid QR payload.
 
------Of course\! After all that hard work, your project deserves a great README.md. Congratulations again on getting it working\! It's a perfect way to celebrate a productive, if rainy, Saturday in Nyeri.
+---
 
-Here is a cute, friendly, and detailed `README.md` file for your **WHIZLITE QR Linker** project. Just copy and paste this into a new file named `README.md` in your project folder.
+## Contributing
 
------
+PRs welcome. Keep changes focused and include tests for new features. If you add storage or long-lived sessions, document the security model clearly.
 
-# ✨ WHIZLITE QR Linker ✨
+---
 
-\<div align="center"\>
-\<img src="[https://img.shields.io/badge/Node.js-339933?style=for-the-badge\&logo=nodedotjs\&logoColor=white](https://www.google.com/search?q=https://img.shields.io/badge/Node.js-339933%3Fstyle%3Dfor-the-badge%26logo%3Dnodedotjs%26logoColor%3Dwhite)" alt="Node.js"\>
-\<img src="[https://img.shields.io/badge/Express.js-000000?style=for-the-badge\&logo=express\&logoColor=white](https://www.google.com/search?q=https://img.shields.io/badge/Express.js-000000%3Fstyle%3Dfor-the-badge%26logo%3Dexpress%26logoColor%3Dwhite)" alt="Express.js"\>
-\<img src="[https://img.shields.io/badge/Socket.io-010101?\&style=for-the-badge\&logo=socket.io\&logoColor=white](https://www.google.com/search?q=https://img.shields.io/badge/Socket.io-010101%3F%26style%3Dfor-the-badge%26logo%3Dsocket.io%26logoColor%3Dwhite)" alt="Socket.io"\>
-\</div\>
+## Credits & references
 
-\<p align="center"\>
-The cutest and simplest way to get your WhatsApp session ID, fast and secure\! 🚀
-\</p\>
+* Project & design — **Josphat Mburu** ([@mburuwhiz](https://github.com/mburuwhiz)) — WHIZ.
+* Libraries / docs worth reading:
 
------
+  * Node.js — [https://nodejs.org/](https://nodejs.org/)
+  * Express — [https://expressjs.com/](https://expressjs.com/)
+  * Socket.IO — [https://socket.io/](https://socket.io/)
+  * Baileys (WhatsApp Web library) — [https://github.com/adiwajshing/Baileys](https://github.com/adiwajshing/Baileys)
+  * Shields.io (badges) — [https://shields.io/](https://shields.io/)
+  * QR generation (example libs): `qrcode` (npm) — [https://www.npmjs.com/package/qrcode](https://www.npmjs.com/package/qrcode)
 
-## 🚀 About The Project
+---
 
-Welcome to the WHIZLITE QR Linker\! 🎉
+## License
 
-Say goodbye to complicated setups\! This little project makes it super easy and fun to link your WhatsApp account and receive your session ID directly to your number. It runs a clean, simple web server that generates a unique QR code. Just scan it, and *voilà*\! Your session ID arrives in your WhatsApp messages.
+MIT © WHIZ (Josphat Mburu). See `LICENSE` for details.
 
-It's built with ❤️ using **Node.js**, **Express**, **Socket.IO**, and the powerful **Baileys** library.
+---
 
-\<br\>
-\<p align="center"\>
-\<img src="[https://i.ibb.co/L5hV3pC/whizlite-qr-screenshot.png](https://www.google.com/search?q=https://i.ibb.co/L5hV3pC/whizlite-qr-screenshot.png)" alt="WHIZLITE QR Linker Screenshot" width="700"\>
-\</p\>
-\<br\>
-
------
-
-## ✨ Features
-
-  * **Simple & Clean UI:** A beautiful, no-fuss interface that just works.
-  * **Instant QR Code Generation:** Get a fresh QR code the moment you open the page. ⚡
-  * **Direct Session ID Delivery:** Your session is sent securely to your own WhatsApp number. 📲
-  * **Secure In-Memory Sessions:** No database needed\! Sessions are live in memory and gone when the server restarts. 🔒
-  * **Multi-Device Ready:** Designed from the ground up to handle multiple concurrent connections without any issues. 🌐
-
------
-
-## 🛠️ Getting Started
-
-Getting your own WHIZLITE QR Linker running is as easy as 1, 2, 3\!
-
-### Prerequisites
-
-Make sure you have Node.js installed on your system.
-
-  * [Node.js](https://nodejs.org/) (which includes npm)
-
-### Installation
-
-1.  **Clone the repo** (or just download the files into a new folder)
-    ```sh
-    git clone https://github.com/mburuwhiz/WHIZLITE-QR-Linker.git
-    ```
-2.  **Navigate to the project directory**
-    ```sh
-    cd WHIZLITE-QR-Linker
-    ```
-3.  **Install NPM packages**
-    ```sh
-    npm install
-    ```
-4.  **Create your environment file**
-      * Create a new file in the root of the project called `.env`
-      * Open it and add the following line. You can change the port if you want\!
-        ```env
-        PORT=3000
-        ```
-
------
-
-## 📜 Usage
-
-Now for the fun part\!
-
-1.  **Start the server** from your terminal:
-
-    ```sh
-    npm start
-    ```
-
-    You should see a message saying: `QR Linker is running on http://localhost:3000`
-
-2.  **Open your browser** and navigate to `http://localhost:3000`.
-
-3.  **Scan the QR code** with your phone using WhatsApp (`Settings` \> `Linked Devices` \> `Link a Device`).
-
-4.  **Check your WhatsApp messages\!** You will receive two messages: one with your `WHIZLITE_` session ID and a confirmation message.
-
-That's it\! You're ready to go\! 🥳
-
------
-
-## 💖 Acknowledgments
-
-  * Built with ❤️ by **Josphat Mburu** ([@mburuwhiz](https://www.google.com/search?q=https://github.com/mburuwhiz))
-  * A huge thank you to the **Baileys** team for making this possible.
-  * And thank you for using this project\!
-
------
